@@ -26,12 +26,17 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
-
-
-
-
-
-
+n = size(X, 2);
+%fprintf('n = %d\n', n);
+for i = 1:n
+    mu(1, i) = mean(X(:, i));
+    sigma(1, i) = std(X(:, i));
+%    fprintf('mu(%d) = %f, sigma(%d) = %f\n', i, mu(1,i), i, sigma(1, i));
+endfor
+m = size(X, 1);
+for i = 1:m
+    X_norm(i,:) = (X(i,:) - mu) ./ sigma;
+endfor
 
 
 % ============================================================
