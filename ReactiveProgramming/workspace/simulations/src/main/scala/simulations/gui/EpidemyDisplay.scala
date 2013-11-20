@@ -159,6 +159,9 @@ object EpidemyDisplay extends EpidemySimulator with App {
       var countTime = 0
       def actionPerformed(event: ActionEvent) {
         if (currentTime <= countTime) {
+          if (!hasStep) {
+            println("No steps left")
+          }
           assert(hasStep)
           for (w <- world) w.reset
           updateWorld()
@@ -166,7 +169,7 @@ object EpidemyDisplay extends EpidemySimulator with App {
           frame.repaint()
           next
           val previousTime = currentTime
-          while (!agenda.isEmpty && agenda.head.time == previousTime) next
+          while (hasStep && agenda.head.time == previousTime) next
         } else if (historyContinues && !history.isEmpty) {
           history = history.head :: history
         }
